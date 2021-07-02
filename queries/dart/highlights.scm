@@ -3,9 +3,16 @@
 ; Methods
 ; --------------------
 (super) @function
+
 ; TODO: add method/call_expression to grammar and
 ; distinguish method call from variable access
 (function_expression_body (identifier) @function)
+; ((identifier)(selector (argument_part)) @function)
+
+; NOTE: This query is a bit of a work around for the fact that the dart grammar doesn't
+; specifically identify a node as a function call
+(((identifier) @function (#match? @function "^_?[a-z]"))
+  . (selector . (argument_part))) @function
 
 ; Annotations
 ; --------------------
@@ -45,6 +52,7 @@
  ">="
  "<="
  "||"
+ (multiplicative_operator)
  (increment_operator)
  (is_operator)
  (prefix_operator)
@@ -111,6 +119,9 @@
 
 ; properties
 (unconditional_assignable_selector
+  (identifier) @property)
+
+(conditional_assignable_selector
   (identifier) @property)
 
 ; assignments

@@ -348,6 +348,16 @@ list.haskell = {
   }
 }
 
+list.hcl = {
+  install_info = {
+    url = "https://github.com/MichaHoffmann/tree-sitter-hcl",
+    files = {"src/parser.c", "src/scanner.cc"},
+    branch = "main"
+  },
+  filetype = "hcl",
+  used_by = { "terraform", "packer", "nomad" },
+}
+
 -- FIXME(vigoux): markdown is broken for now
 -- list.markdown = {
 --   install_info = {
@@ -599,6 +609,14 @@ list.fortran = {
     url = "https://github.com/stadelmanma/tree-sitter-fortran",
     files = { "src/parser.c", "src/scanner.cc", },
   },
+}
+
+list.cmake = {
+  install_info = {
+    url = "https://github.com/uyha/tree-sitter-cmake",
+    files = { "src/parser.c", "src/scanner.cc"},
+  },
+  maintainers = { "@uyha" },
 }
 
 local M = {
