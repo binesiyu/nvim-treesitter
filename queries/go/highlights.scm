@@ -88,19 +88,20 @@
   "continue"
   "default"
   "defer"
-  "func"
   "go"
   "goto"
   "interface"
   "map"
   "range"
-  "return"
   "select"
   "struct"
   "type"
   "var"
   "fallthrough"
 ] @keyword
+
+"func" @keyword.function
+"return" @keyword.return
 
 "for" @repeat
 

@@ -196,26 +196,32 @@
 ] @keyword.operator
 
 [
+  "def"
+  "lambda"
+] @keyword.function
+
+[
   "assert"
   "async"
   "await"
   "class"
-  "def"
   "except"
   "exec"
   "finally"
   "global"
-  "lambda"
   "nonlocal"
   "pass"
   "print"
   "raise"
-  "return"
   "try"
   "with"
-  "yield"
   "as"
 ] @keyword
+
+[
+  "return"
+  "yield"
+] @keyword.return
 
 ["from" "import"] @include
 (aliased_import "as" @include)
