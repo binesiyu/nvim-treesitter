@@ -438,7 +438,7 @@ To use it: >
   set foldexpr=nvim_treesitter#foldexpr()
 <
 
-This will respect your 'foldnestmax' setting.
+This will respect your 'foldminlines' and 'foldnestmax' settings.
 
 Note: This is highly experimental, and folding can break on some types of
       edits. If you encounter such breakage, hiting `zx` should fix folding.
@@ -601,6 +601,10 @@ For regexes.
 							   *hl-TSStringEscape*
 `TSStringEscape`
 For escape characters within a string.
+
+							  *hl-TSStringSpecial*
+`TSStringSpecial`
+For strings with special meaning that don't fit into the above categories.
 
 								 *hl-TSSymbol*
 `TSSymbol`
