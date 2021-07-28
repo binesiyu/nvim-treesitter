@@ -172,10 +172,10 @@ list.bash = {
 
 list.fish = {
   install_info = {
-    url = "https://github.com/krnik/tree-sitter-fish",
+    url = "https://github.com/ram02z/tree-sitter-fish",
     files = { "src/parser.c", "src/scanner.c" },
   },
-  maintainers = { "@krnik", "@ram02z" },
+  maintainers = { "@ram02z" },
 }
 
 list.php = {
@@ -422,6 +422,15 @@ list.yaml = {
     files = { "src/parser.c", "src/scanner.cc" },
   },
   maintainers = { "@stsewd" },
+}
+
+list.yang = {
+  install_info = {
+    url = "https://github.com/Hubro/tree-sitter-yang",
+    files = { "src/parser.c" },
+  },
+  maintainers = { "@Hubro" },
+  filetype = "yang",
 }
 
 list.nix = {
