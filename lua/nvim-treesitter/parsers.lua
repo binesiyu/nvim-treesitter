@@ -261,6 +261,16 @@ list.elixir = {
   maintainers = { "@nifoc" },
 }
 
+list.surface = {
+  install_info = {
+    url = "https://github.com/connorlay/tree-sitter-surface",
+    files = { "src/parser.c" },
+    branch = "main",
+  },
+  filetype = "sface",
+  maintainers = { "@connorlay" },
+}
+
 list.ocaml = {
   install_info = {
     url = "https://github.com/tree-sitter/tree-sitter-ocaml",
@@ -543,6 +553,17 @@ list.gdscript = {
   },
   readme_name = "Godot (gdscript)",
   maintainers = { "@Shatur95" },
+}
+
+list.godotResource = {
+  install_info = {
+    url = "https://github.com/PrestonKnopp/tree-sitter-godot-resource",
+    files = { "src/parser.c", "src/scanner.c" },
+    requires_generate_from_grammar = true,
+  },
+  filetype = "gdresource",
+  readme_name = "Godot Resources (gdresource)",
+  maintainers = { "@pierpo" },
 }
 
 list.turtle = {
