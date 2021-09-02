@@ -94,6 +94,15 @@ list.dockerfile = {
   maintainers = { "@camdencheek" },
 }
 
+list.dot = {
+  install_info = {
+    url = "https://github.com/rydesun/tree-sitter-dot",
+    branch = "main",
+    files = { "src/parser.c" },
+  },
+  maintainers = { "@rydesun" },
+}
+
 list.rust = {
   install_info = {
     url = "https://github.com/tree-sitter/tree-sitter-rust",
@@ -682,6 +691,24 @@ list.vim = {
   },
   filetype = "vim",
   maintainers = { "@vigoux" },
+}
+
+list.json5 = {
+  install_info = {
+    url = "https://github.com/Joakker/tree-sitter-json5",
+    files = { "src/parser.c" },
+  },
+  filetype = "json5",
+  maintainers = { "@Joakker" },
+}
+
+list.pioasm = {
+  install_info = {
+    url = "https://github.com/leo60228/tree-sitter-pioasm",
+    branch = "main",
+    files = { "src/parser.c", "src/scanner.c" },
+  },
+  maintainers = { "@leo60228" },
 }
 
 local M = {
