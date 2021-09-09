@@ -4,6 +4,7 @@
 ] @string
 
 (variable_ref) @none
+(variable) @variable
 
 [
  (bracket_comment)
@@ -19,12 +20,9 @@
 [
  (function)
  (endfunction)
-] @function
-
-[
  (macro)
  (endmacro)
-] @function.macro
+] @keyword.function
 
 [
  (if)
@@ -39,4 +37,16 @@
  (while)
  (endwhile)
 ] @repeat
+
+(function_command
+  (function)
+  . (argument) @function
+  (argument)* @parameter
+)
+
+(macro_command
+  (macro)
+  . (argument) @function.macro
+  (argument)* @parameter
+)
 
