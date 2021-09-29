@@ -85,6 +85,15 @@ list.cuda = {
   maintainers = { "@theHamsta" },
 }
 
+list.glsl = {
+  install_info = {
+    url = "https://github.com/theHamsta/tree-sitter-glsl",
+    files = { "src/parser.c" },
+    generate_requires_npm = true,
+  },
+  maintainers = { "@theHamsta" },
+}
+
 list.dockerfile = {
   install_info = {
     url = "https://github.com/camdencheek/tree-sitter-dockerfile",
@@ -169,6 +178,15 @@ list.ruby = {
   maintainers = { "@TravonteD" },
 }
 
+list.perl = {
+  install_info = {
+    url = "https://github.com/ganezdragon/tree-sitter-perl",
+    files = { "src/parser.c", "src/scanner.cc" },
+    generate_requires_npm = true,
+  },
+  maintainers = { "@ganezdragon" },
+}
+
 list.bash = {
   install_info = {
     url = "https://github.com/tree-sitter/tree-sitter-bash",
@@ -205,10 +223,10 @@ list.java = {
 
 list.kotlin = {
   install_info = {
-    url = "https://github.com/tormodatt/tree-sitter-kotlin",
+    url = "https://github.com/Joakker/tree-sitter-kotlin",
     files = { "src/parser.c" },
   },
-  maintainers = { "@tormodatt" },
+  maintainers = { "@Joakker" },
 }
 
 list.html = {
@@ -498,7 +516,7 @@ list.rst = {
 list.fennel = {
   install_info = {
     url = "https://github.com/travonted/tree-sitter-fennel",
-    files = { "src/parser.c", "src/scanner.c" },
+    files = { "src/parser.c" },
   },
   maintainers = { "@TravonteD" },
 }
@@ -711,11 +729,21 @@ list.pioasm = {
   maintainers = { "@leo60228" },
 }
 
+list.hjson = {
+  install_info = {
+    url = "https://github.com/winston0410/tree-sitter-hjson",
+    files = { "src/parser.c" },
+    generate_requires_npm = true,
+  },
+  maintainers = { "@winston0410" },
+}
+
 local M = {
   list = list,
 }
 
 function M.ft_to_lang(ft)
+  ft = vim.split(ft, ".", true)[1]
   return ft_to_parsername[ft] or ft
 end
 

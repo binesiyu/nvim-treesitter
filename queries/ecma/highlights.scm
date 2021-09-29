@@ -12,6 +12,10 @@
 (property_identifier) @property
 (shorthand_property_identifier) @property
 
+(variable_declarator
+  name: (object_pattern
+    (shorthand_property_identifier_pattern))) @variable
+
 ; Special identifiers
 ;--------------------
 
@@ -175,9 +179,9 @@
 "{" @punctuation.bracket
 "}" @punctuation.bracket
 
-(template_substitution
-  "${" @punctuation.special
-  "}" @punctuation.special) @none
+((template_substitution ["${" "}"] @punctuation.special) @none
+ ; Substitutions should have a higher priority than injections.
+ (#set! "priority" 105))
 
 ; Keywords
 ;----------

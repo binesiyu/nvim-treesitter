@@ -1,2 +1,1 @@
 (comment) @comment
-(note) @comment
