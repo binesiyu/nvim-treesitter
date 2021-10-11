@@ -55,11 +55,13 @@
   "execute"
   "normal"
   "set"
+  "setlocal"
   "silent"
   "echo"
   "autocmd"
   "augroup"
   "return"
+  "syntax"
   "lua"
   "ruby"
   "perl"
@@ -68,6 +70,21 @@
 ] @keyword
 (map_statement cmd: _ @keyword)
 (command_name) @function.macro
+
+;; Syntax command
+
+(syntax_statement (keyword) @string)
+(syntax_statement [
+  "enable"
+  "on"
+  "off"
+  "reset"
+  "case"
+  "spell"
+  "foldlevel"
+  "iskeyword"
+  "keyword"
+] @keyword)
 
 [
   "<buffer>"
