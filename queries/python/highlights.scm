@@ -4,7 +4,7 @@
 ; Variables
 (identifier) @variable
 
-; Reset highlighing in f-string interpolations
+; Reset highlighting in f-string interpolations
 (interpolation) @none
 
 ;; Identifier naming conventions
@@ -265,7 +265,7 @@
   body: (block
           (expression_statement
             (assignment
-              left: (_ 
+              left: (_
                      (identifier) @field)))))
  (#match? @field "^([A-Z])@!.*$"))
 
