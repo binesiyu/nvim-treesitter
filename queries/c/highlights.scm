@@ -138,7 +138,7 @@
 (sizeof_expression value: (parenthesized_expression (identifier) @type))
 
 ((identifier) @constant
- (#match? @constant "^[A-Z][A-Z0-9_]+$"))
+ (#lua-match? @constant "^[A-Z][A-Z0-9_]+$"))
 
 ;; Preproc def / undef
 (preproc_def
@@ -167,8 +167,7 @@
 (parameter_declaration
   declarator: (pointer_declarator) @parameter)
 
-(preproc_params
-  (identifier)) @parameter
+(preproc_params (identifier) @parameter)
 
 [
   "__attribute__"
