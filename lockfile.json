@@ -3,7 +3,7 @@
     "revision": "4094e3a0405aabb1314c0c41f29e38e70af86fa5"
   },
   "beancount": {
-    "revision": "79ae7c1f2654a2a6936b0f37bf754e5ff59c9186"
+    "revision": "78b8ddca3ab774573a4e3bf64eabd79e9452cea9"
   },
   "bibtex": {
     "revision": "ccfd77db0ed799b6c22c214fe9d2937f47bc8b34"
@@ -12,7 +12,7 @@
     "revision": "e348e8ec5efd3aac020020e4af53d2ff18f393a9"
   },
   "c_sharp": {
-    "revision": "8de07e47ea073d4c99195d8a4dadaf00fdee9f2f"
+    "revision": "d26b3dfed6dfb1373071e635df342b91f9ee68e2"
   },
   "clojure": {
     "revision": "39bf0977d223879436c1425fe6bfeb3bcfd86f92"
@@ -33,7 +33,7 @@
     "revision": "a03f1d2d1dfbf6f8e0fdca5f9ff030228241eb57"
   },
   "cuda": {
-    "revision": "274640841387e70c90ce2ff0f1b0d010d2aa8957"
+    "revision": "1c2dc8b66df5fc9a19c56bd7f1bb5d2364e475a5"
   },
   "d": {
     "revision": "c2fbf21bd3aa45495fe13247e040ad5815250032"
@@ -69,19 +69,19 @@
     "revision": "f0f2f100952a353e64e26b0fa710b4c296d7af13"
   },
   "gdscript": {
-    "revision": "59e7e41e186d3759592e9938291f69055200783f"
+    "revision": "27254af00006703a333e9b347e38aff8012d050a"
   },
   "glimmer": {
-    "revision": "dd39c2ef457baa79ced8e99fd2508d15de301e86"
+    "revision": "2623e2a0d32a748e196d8f7693dfcc87061b0947"
   },
   "glsl": {
-    "revision": "88408ffc5e27abcffced7010fc77396ae3636d7e"
+    "revision": "26ba31a3f5a85ebed5d71e49eef11a003bed782b"
   },
   "go": {
     "revision": "7f6bfd0161b2fe97f03564edad3287ebea0494a3"
   },
   "godotResource": {
-    "revision": "c611dd49e838efe25567dece14cf6353710f6d98"
+    "revision": "d21e57f736da8407c5a93e78b05fc7b2a80e63f3"
   },
   "gomod": {
     "revision": "2dfd6b7d3a4cfedc52e5eaa3cc497f419e628ebb"
@@ -90,7 +90,7 @@
     "revision": "5e66e961eee421786bdda8495ed1db045e06b5fe"
   },
   "haskell": {
-    "revision": "bf7d643b494b7c7eed909ed7fbd8447231152cb0"
+    "revision": "d72f2e42c0d5ccf8e8b1c39e3642428317e8fe02"
   },
   "hcl": {
     "revision": "3cb7fc28247efbcb2973b97e71c78838ad98a583"
@@ -103,6 +103,9 @@
   },
   "html": {
     "revision": "161a92474a7bb2e9e830e48e76426f38299d99d1"
+  },
+  "http": {
+    "revision": "bfddd16b1cf78e0042fd1f6846a179f76a254e20"
   },
   "java": {
     "revision": "ed3a87f750b1d1d533f15ab93fef3e1f5a46e234"
@@ -156,13 +159,13 @@
     "revision": "0ac2c6da562c7a2c26ed7e8691d4a590f7e8b90a"
   },
   "php": {
-    "revision": "435fa00006c0d1515c37fbb4dd6a9de284af75ab"
+    "revision": "57f855461aeeca73bd4218754fb26b5ac143f98f"
   },
   "pioasm": {
     "revision": "924aadaf5dea2a6074d72027b064f939acf32e20"
   },
   "python": {
-    "revision": "8600d7fadf5a51b9396eacbc6d105d0649b4c6f6"
+    "revision": "24b530ca158d2782ea9046e756057a412e16b52f"
   },
   "ql": {
     "revision": "8e7fd7e638d4a0ec7a792ee16b19dbc6407aa810"
@@ -171,16 +174,16 @@
     "revision": "9a2ccff9f672f1f3d320cf925b8e5acc89b27055"
   },
   "r": {
-    "revision": "007f7fc125ef7a07716c5162738ed2d5f92aa2a7"
+    "revision": "82c8d71542629812b7fc1f5b15a1aefadb98eff5"
   },
   "regex": {
     "revision": "7b97502cfc3ffa7110f6b68bb39fb259c9a0500c"
   },
   "rst": {
-    "revision": "632596b1fe5816315cafa90cdf8f8000e30c93e4"
+    "revision": "a5514617ae3644effa80d4696be428e4a371c01a"
   },
   "ruby": {
-    "revision": "1fedb2a117f89b7df05550255a022f6e25bb7975"
+    "revision": "951799c6780deaabb0666b846cb7ad4eab627bbb"
   },
   "rust": {
     "revision": "cc7bdd3e6d14677e8aa77da64f6a3f57b6f8b00a"
@@ -189,13 +192,13 @@
     "revision": "0a3dd53a7fc4b352a538397d054380aaa28be54c"
   },
   "scss": {
-    "revision": "9da7c979c010c350c28ad2235893103db4622c10"
+    "revision": "f3174d3d131eb776f86dfa3d90fe6f7325c0ad9a"
   },
   "sparql": {
     "revision": "05f949d3c1c15e3261473a244d3ce87777374dec"
   },
   "supercollider": {
-    "revision": "67ecede8fc5f2e342a7f0516b87d0476b36035ac"
+    "revision": "7621ddfef7df294e696584e8908a3444621f9fc7"
   },
   "surface": {
     "revision": "21b7676859c1187645a27ff301f76738af5dfd44"
@@ -216,13 +219,13 @@
     "revision": "8bd2056818b21860e3d756b5a58c4f6e05fb744e"
   },
   "tsx": {
-    "revision": "cc745b774e3986aa3a7dfd6b7a0fc01ddc853bf8"
+    "revision": "111b07762e86efab9a918b7c721f720c37e76b0a"
   },
   "turtle": {
     "revision": "085437f5cb117703b7f520dd92161140a684f092"
   },
   "typescript": {
-    "revision": "cc745b774e3986aa3a7dfd6b7a0fc01ddc853bf8"
+    "revision": "111b07762e86efab9a918b7c721f720c37e76b0a"
   },
   "verilog": {
     "revision": "8f6b1f357d1231c420404b5f7a368a73c25adfa2"

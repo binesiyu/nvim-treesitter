@@ -122,6 +122,8 @@
 ]@constant.builtin
 
 (spread) @constant ;; "..."
+((identifier) @constant
+ (#lua-match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 ;; Functions
 (function [(function_name) (identifier)] @function.macro)
