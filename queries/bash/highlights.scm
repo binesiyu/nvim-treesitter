@@ -5,10 +5,14 @@
 [
  "("
  ")"
+ "(("
+ "))"
  "{"
  "}"
  "["
  "]"
+ "[["
+ "]]"
  ] @punctuation.bracket
 
 [
@@ -23,7 +27,9 @@
 
 [
  ">"
+ ">>"
  "<"
+ "<<"
  "&"
  "&&"
  "|"
@@ -84,6 +90,9 @@
 (command_substitution
   [ "$(" ")" ] @punctuation.bracket)
 
+(process_substitution
+  [ "<(" ")" ] @punctuation.bracket)
+
 
 (function_definition
   name: (word) @function)
@@ -92,8 +101,8 @@
 
 ((command_name (word) @function.builtin)
  (#any-of? @function.builtin
-    "cd" "echo" "eval" "exit" "getopts"
-    "pushd" "popd" "return" "set" "shift"))
+    "alias" "cd" "clear" "echo" "eval" "exit" "getopts" "popd"
+    "pushd" "return" "set" "shift" "shopt" "source" "test"))
 
 (command
   argument: [

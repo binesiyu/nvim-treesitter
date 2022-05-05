@@ -1,36 +1,22 @@
-;;; Highlighting for lua
-
-;;; Builtins
-(self) @variable.builtin
-
 ;; Keywords
 
-(if_statement
-[
-  "if"
-  "then"
-  "end"
-] @conditional)
+"return" @keyword.return
 
 [
-  "else"
-  "elseif"
-  "then"
-] @conditional
+ "goto"
+ "in"
+ "local"
+] @keyword
 
-(for_statement
+(label_statement) @label
+
+(break_statement) @keyword
+
+(do_statement
 [
-  "for"
   "do"
   "end"
-] @repeat)
-
-(for_in_statement
-[
-  "for"
-  "do"
-  "end"
-] @repeat)
+] @keyword)
 
 (while_statement
 [
@@ -45,59 +31,90 @@
   "until"
 ] @repeat)
 
-(do_statement
+(if_statement
 [
+  "if"
+  "elseif"
+  "else"
+  "then"
+  "end"
+] @conditional)
+
+(elseif_statement
+[
+  "elseif"
+  "then"
+  "end"
+] @conditional)
+
+(else_statement
+[
+  "else"
+  "end"
+] @conditional)
+
+(for_statement
+[
+  "for"
   "do"
   "end"
-] @keyword)
+] @repeat)
 
+(function_declaration
 [
- "in"
- "return"
- (break_statement)
- "goto"
-] @keyword
+  "function"
+  "end"
+] @keyword.function)
 
+(function_definition
 [
- "local"
-] @type
+  "function"
+  "end"
+] @keyword.function)
 
 ;; Operators
 
 [
- "not"
  "and"
+ "not"
  "or"
 ] @keyword.operator
 
 [
-"="
-"~="
-"=="
-"<="
-">="
-"<"
-">"
-"+"
-"-"
-"%"
-"/"
-"//"
-"*"
-"^"
-"&"
-"~"
-"|"
-">>"
-"<<"
-".."
-"#"
- ] @operator
+  "+"
+  "-"
+  "*"
+  "/"
+  "%"
+  "^"
+  "#"
+  "=="
+  "~="
+  "<="
+  ">="
+  "<"
+  ">"
+  "="
+  "&"
+  "~"
+  "|"
+  "<<"
+  ">>"
+  "//"
+  ".."
+] @operator
 
-;; Punctuation
-[ "," "." ":"] @punctuation.delimiter
+;; Punctuations
+
+[
+  ";"
+  ":"
+  ","
+  "."
+] @punctuation.delimiter
 
 ;; Brackets
+
 [
  "("
  ")"
@@ -108,41 +125,49 @@
 ] @punctuation.bracket
 
 ;; Variables
-; (identifier) @variable
+
+(identifier) @variable
+
+((identifier) @variable.builtin
+ (#match? @variable.builtin "self"))
 
 ;; Constants
-[
-(false)
-(true)
-] @boolean
 
-[
-(self)
-(nil)
-]@constant.builtin
-
-(spread) @constant ;; "..."
 ((identifier) @constant
  (#lua-match? @constant "^[A-Z][A-Z_0-9]*$"))
 
+(vararg_expression) @constant
+
+(nil) @constant.builtin
+
+[
+  (false)
+  (true)
+] @boolean
+
+;; Tables
+
+(field name: (identifier) @field)
+
+(dot_index_expression field: (identifier) @field)
+
+(table_constructor
+[
+  "{"
+  "}"
+] @constructor)
+
 ;; Functions
-(function [(function_name) (identifier)] @function.macro)
-(function ["function" "end"] @keyword.function)
 
-(local_function (identifier) @function.macro)
-(local_function ["function" "end"] @keyword.function)
+(parameters (identifier) @parameter)
 
-(function_definition ["function" "end"] @keyword.function)
+(function_call name: (identifier) @function)
+(function_declaration name: (identifier) @function)
 
-; (property_identifier) @property
-; (method) @method
+(function_call name: (dot_index_expression field: (identifier) @function))
+(function_declaration name: (dot_index_expression field: (identifier) @function))
 
-(function_call (self) (method) @method . (arguments))
-(function_call (identifier) @method . (arguments))
-(function_call (field_expression (property_identifier) @method) . (arguments))
-
-(function_call (identifier) @text . (method) @method (arguments))
-(function_call (field_expression (property_identifier) @text) . (method) @method (arguments))
+(method_index_expression method: (identifier) @method)
 
 (function_call
   (identifier) @function.builtin
@@ -153,19 +178,15 @@
     "rawequal" "rawget" "rawset" "require" "select" "setfenv" "setmetatable"
     "tonumber" "tostring" "type" "unpack" "xpcall"))
 
-;; Parameters
-; (parameters
-;   (identifier) @parameter)
+;; Others
 
-;; Nodes
-(table ["{" "}"] @constructor)
 (comment) @comment
-(string) @string
+
+(hash_bang_line) @comment
+
 (number) @number
-(label_statement) @label
-; A bit of a tricky one, this will only match field names
-; (field . (identifier) @field (_))
-(shebang) @comment
+
+(string) @string
 
 ;; Error
 (ERROR) @error
