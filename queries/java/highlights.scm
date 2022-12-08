@@ -9,7 +9,7 @@
 (method_declaration
   name: (identifier) @method)
 (method_invocation
-  name: (identifier) @method)
+  name: (identifier) @method.call)
 
 (super) @function.builtin
 
@@ -149,7 +149,7 @@
 [
   (line_comment)
   (block_comment)
-] @comment
+] @comment @spell
 
 [
 (true)
@@ -159,7 +159,6 @@
 ; Keywords
 
 [
-"abstract"
 "assert"
 "break"
 "class"
@@ -169,30 +168,45 @@
 "enum"
 "exports"
 "extends"
-"final"
 "implements"
 "instanceof"
 "interface"
 "module"
-"native"
-"open"
 "opens"
 "package"
-"private"
-"protected"
+"permits"
 "provides"
-"public"
 "requires"
-"static"
-"strictfp"
-"synchronized"
 "to"
-"transient"
-"transitive"
 "uses"
-"volatile"
 "with"
 ] @keyword
+
+(synchronized_statement
+  "synchronized" @keyword)
+
+[
+"abstract"
+"final"
+"native"
+"non-sealed"
+"open"
+"private"
+"protected"
+"public"
+"sealed"
+"static"
+"strictfp"
+"transitive"
+] @type.qualifier
+
+(modifiers
+  "synchronized" @type.qualifier)
+
+[
+"transient"
+"volatile"
+] @storageclass
 
 [
 "return"
@@ -212,7 +226,7 @@
 "case"
 ] @conditional
 
-(ternary_expression ["?" ":"] @conditional)
+(ternary_expression ["?" ":"] @conditional.ternary)
 
 ;
 

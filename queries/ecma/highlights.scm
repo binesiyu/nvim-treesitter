@@ -83,11 +83,11 @@
 ;--------------------------
 
 (call_expression
-  function: (identifier) @function)
+  function: (identifier) @function.call)
 
 (call_expression
   function: (member_expression
-    property: [(property_identifier) (private_property_identifier)] @method))
+    property: [(property_identifier) (private_property_identifier)] @method.call))
 
 ; Variables
 ;----------
@@ -97,22 +97,36 @@
 ; Literals
 ;---------
 
-(this) @variable.builtin
-(super) @variable.builtin
-
-(true) @boolean
-(false) @boolean
-(null) @constant.builtin
 [
-(comment)
-(hash_bang_line)
-] @comment
-(string) @string
-(regex) @punctuation.delimiter
-(regex_pattern) @string.regex
+  (this)
+  (super)
+] @variable.builtin
+
+[
+  (true)
+  (false)
+] @boolean
+
+[
+  (null)
+  (undefined)
+] @constant.builtin
+
+(comment) @comment
+
+(hash_bang_line) @preproc
+
+(comment) @spell
+
+(string) @string @spell
 (template_string) @string
 (escape_sequence) @string.escape
+(regex_pattern) @string.regex
+(regex "/" @punctuation.bracket) ; Regex delimiters
+
 (number) @number
+((identifier) @number
+  (#any-of? @number "NaN" "Infinity"))
 
 ; Punctuation
 ;------------
@@ -122,9 +136,9 @@
 ";" @punctuation.delimiter
 "." @punctuation.delimiter
 "," @punctuation.delimiter
-"?." @punctuation.delimiter
 
 (pair ":" @punctuation.delimiter)
+(pair_pattern ":" @punctuation.delimiter)
 
 [
   "--"
@@ -171,8 +185,9 @@
 ] @operator
 
 (binary_expression "/" @operator)
-(ternary_expression ["?" ":"] @conditional)
-(unary_expression ["!" "~" "-" "+" "delete" "void" "typeof"]  @operator)
+(ternary_expression ["?" ":"] @conditional.ternary)
+(unary_expression ["!" "~" "-" "+"] @operator)
+(unary_expression ["delete" "void" "typeof"] @keyword.operator)
 
 [
   "("
@@ -193,14 +208,17 @@
 "else"
 "switch"
 "case"
-"default"
 ] @conditional
 
 [
 "import"
 "from"
-"as"
 ] @include
+
+(export_specifier "as" @include)
+(import_specifier "as" @include)
+(namespace_export "as" @include)
+(namespace_import "as" @include)
 
 [
 "for"
@@ -225,11 +243,9 @@
 "let"
 "set"
 "static"
-"switch"
 "target"
 "typeof"
 "var"
-"void"
 "with"
 ] @keyword
 
@@ -253,3 +269,8 @@
  "catch"
  "finally"
 ] @exception
+
+(export_statement
+  "default" @keyword)
+(switch_default
+  "default" @conditional)

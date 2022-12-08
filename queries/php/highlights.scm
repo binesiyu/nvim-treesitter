@@ -20,7 +20,7 @@
   name: (name) @type)
 (namespace_use_clause
   [(name) (qualified_name)] @type)
-(namespace_aliasing_clause (name)) @type
+(namespace_aliasing_clause (name)) @type.definition
 (class_interface_clause
   [(name) (qualified_name)] @type)
 (scoped_call_expression
@@ -42,16 +42,16 @@
   name: (name) @method)
 
 (function_call_expression
-  function: (qualified_name (name)) @function)
+  function: (qualified_name (name)) @function.call)
 
 (function_call_expression
-  (name) @function)
+  (name) @function.call)
 
 (scoped_call_expression
-  name: (name) @function)
+  name: (name) @function.call)
 
 (member_call_expression
-  name: (name) @method)
+  name: (name) @method.call)
 
 (function_definition
   name: (name) @function)
@@ -96,12 +96,15 @@
 
 (const_declaration (const_element (name) @constant))
 
-((name) @variable.builtin
- (#eq? @variable.builtin "this"))
+((variable_name) @variable.builtin
+ (#eq? @variable.builtin "$this"))
 
 ; Namespace
 (namespace_definition
   name: (namespace_name) @namespace)
+
+; Attributes
+(attribute_list) @attribute
 
 ; Conditions ( ? : )
 (conditional_expression) @conditional
@@ -109,16 +112,18 @@
 
 [
  (string)
- (heredoc)
+ (encapsed_string)
+ (heredoc_body)
+ (nowdoc_body)
  (shell_command_expression) ; backtick operator: `ls -la`
- ] @string
-(encapsed_string (escape_sequence) @string.escape)
+ ] @string @spell
+(escape_sequence) @string.escape
 
 (boolean) @boolean
 (null) @constant.builtin
 (integer) @number
 (float) @float
-(comment) @comment
+(comment) @comment @spell
 
 (named_label_statement) @label
 ; Keywords
@@ -137,19 +142,15 @@
 ] @keyword.function
 
 [
- "$"
- "abstract"
  "break"
  "class"
  "clone"
- "const"
  "declare"
  "default"
  "echo"
  "enddeclare"
  "enum"
  "extends"
- "final"
  "global"
  "goto"
  "implements"
@@ -157,13 +158,20 @@
  "interface"
  "namespace"
  "new"
- "private"
- "protected"
- "public"
- "static"
  "trait"
  "unset"
  ] @keyword
+
+[
+ "abstract"
+ "const"
+ "final"
+ "private"
+ "protected"
+ "public"
+ "readonly"
+ "static"
+] @type.qualifier
 
 [
   "return"
@@ -222,6 +230,7 @@
  "]"
  "{"
  "}"
+ "#["
  ] @punctuation.bracket
 
 [

@@ -1,19 +1,27 @@
 ; inherits: ecma
+
 [
-"abstract"
-"declare"
-"enum"
-"export"
-"implements"
-"interface"
-"keyof"
-"namespace"
-"private"
-"protected"
-"public"
-"type"
-"readonly"
+  "declare"
+  "enum"
+  "export"
+  "implements"
+  "interface"
+  "keyof"
+  "type"
+  "namespace"
+  "override"
+  "satisfies"
 ] @keyword
+
+(as_expression "as" @keyword)
+
+[
+  "abstract"
+  "private"
+  "protected"
+  "public"
+  "readonly"
+] @type.qualifier
 
 ; types
 
@@ -26,13 +34,15 @@
       ((import_specifier
           name: (identifier) @type)))))
 
-; punctuation
+;; punctuation
 
 (type_arguments
-  "<" @punctuation.bracket
-  ">" @punctuation.bracket)
+  ["<" ">"] @punctuation.bracket)
 
-(union_type 
+(type_parameters
+  ["<" ">"] @punctuation.bracket)
+
+(union_type
   "|" @punctuation.delimiter)
 
 (intersection_type 
@@ -43,6 +53,8 @@
 
 (pair
   ":" @punctuation.delimiter)
+
+"?." @punctuation.delimiter
 
 (property_signature "?" @punctuation.special)
 (optional_parameter "?" @punctuation.special)

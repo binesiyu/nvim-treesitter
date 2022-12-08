@@ -1,7 +1,7 @@
 ;; General syntax
 (ERROR) @error
 
-(generic_command) @function
+(command_name) @function
 (caption
   command: _ @function)
 
@@ -14,6 +14,9 @@
  (block_comment)
  (comment_environment)
 ] @comment
+
+((line_comment) @preproc
+  (#lua-match? @preproc "^%% !TeX"))
 
 [
  (brack_group)
@@ -129,7 +132,6 @@
 (author_declaration
   command: _ @namespace
   authors: (curly_group_author_list
-             ((command_name)? @function)
              ((author)+ @text.title)))
 
 (chapter
@@ -235,3 +237,10 @@
   command: _ @include
   paths: (curly_group_path_list) @string)
 
+(
+    (text) @spell
+    (#not-has-parent? @spell
+        inline_formula
+        displayed_equation
+    )
+)

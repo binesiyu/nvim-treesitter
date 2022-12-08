@@ -22,10 +22,10 @@
 (comment) @comment
 
 ; strings
-[ (string) (indented_string) ] @string
+[ (string_expression) (indented_string_expression) ] @string
 
 ; paths and URLs
-[ (path) (spath) (uri) ] @string.special
+[ (path_expression) (spath_expression) (uri_expression) ] @string.special
 
 ; escape sequences
 (escape_sequence) @string.escape
@@ -49,22 +49,29 @@
 
 ; `?` in `{ x ? y }:`, used to set defaults for named function arguments
 ; I'm not really sure what group this should go in, but it should probably have highlighting, so I'm putting it in @punctuation.special
-(formal "?" @punctuation.special)
+(formal
+  name: (identifier) @parameter
+  "?"? @punctuation.special)
 
 ; `...` in `{ ... }`, used to ignore unknown named function arguments (see above)
 (ellipses) @punctuation.special
 
+; universal is the parameter of the function expression
 ; `:` in `x: y`, used to separate function argument from body (see above)
-(function ":" @punctuation.special)
+(function_expression
+  universal: (identifier) @parameter
+  ":" @punctuation.special)
 
 ; basic identifiers
-(identifier) @variable
+(variable_expression) @variable
 
 ; builtin functions
 ((identifier) @_i (#match? @_i "^(builtins|baseNameOf|dirOf|fetchTarball|map|removeAttrs|toString)$")) @variable.builtin
 
 ; display entire builtins path as builtin (ex. `builtins.filter` is highlighted as one long builtin)
-(select ((identifier) @_i (#eq? @_i "builtins")) (attrpath (attr_identifier) @variable.builtin)) @variable.builtin
+(select_expression
+  expression: ((variable_expression) @_i (#eq? @_i "builtins"))
+  attrpath: (attrpath attr: (identifier) @variable.builtin)) @variable.builtin
 
 ; import
 ((identifier) @_i (#eq? @_i "import")) @include
@@ -82,39 +89,23 @@
 (interpolation "${" @punctuation.special (_) "}" @punctuation.special) @none
 
 ; fields (the `.` in `a.b = c;` isn't included)
-(attrset (bind . (attrpath (attr_identifier) @field)))
-(rec_attrset (bind . (attrpath (attr_identifier) @field)))
+(attrset_expression (binding_set (binding . (attrpath (identifier) @field))))
+(rec_attrset_expression (binding_set (binding . (attrpath (identifier) @field))))
 
 ; unary operators
-(unary "-" @operator)
-(unary "!" @operator)
+(unary_expression operator: _ @operator)
 
 ; binary operators
-(binary "?" @operator)
-(binary "++" @operator)
-(binary "*" @operator)
-(binary "/" @operator)
-(binary "+" @operator)
-(binary "-" @operator)
-(binary "//" @operator)
-(binary "<" @operator)
-(binary "<=" @operator)
-(binary ">" @operator)
-(binary ">=" @operator)
-(binary "==" @operator)
-(binary "!=" @operator)
-(binary "&&" @operator)
-(binary "||" @operator)
-(binary "->" @operator)
+(binary_expression operator: _ @operator)
 
 ; integers, also highlight a unary -
 [
-  (unary "-" (integer))
-  (integer)
+  (unary_expression "-" (integer_expression))
+  (integer_expression)
 ] @number
 
 ; floats, also highlight a unary -
 [
-  (unary "-" (float))
-  (float)
+  (unary_expression "-" (float_expression))
+  (float_expression)
 ] @float

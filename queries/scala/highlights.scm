@@ -32,7 +32,7 @@
   name: (identifier) @type)
 
 (type_definition
-  name: (type_identifier) @type)
+  name: (type_identifier) @type.definition)
 
 ; method definition
 
@@ -65,18 +65,18 @@
 
 
 (call_expression
-  function: (identifier) @function)
+  function: (identifier) @function.call)
 
 (call_expression
   function: (field_expression
-    field: (identifier) @method))
+    field: (identifier) @method.call))
 
 ((call_expression
    function: (identifier) @constructor)
  (#lua-match? @constructor "^[A-Z]"))
 
 (generic_function
-  function: (identifier) @function)
+  function: (identifier) @function.call)
 
 (
   (identifier) @function.builtin
@@ -121,22 +121,15 @@
 ;; keywords
 
 [
-  "abstract"
   "case"
   "class"
   "extends"
-  "final"
   "finally"
 ;; `forSome` existential types not implemented yet
-  "implicit"
-  "lazy"
 ;; `macro` not implemented yet
   "object"
   "override"
   "package"
-  "private"
-  "protected"
-  "sealed"
   "trait"
   "type"
   "val"
@@ -144,8 +137,21 @@
   "with"
 ] @keyword
 
-(null_literal) @keyword
-(wildcard) @keyword
+[
+  "abstract"
+  "final"
+  "implicit"
+  "lazy"
+  "private"
+  "protected"
+  "sealed"
+] @type.qualifier
+
+(null_literal) @constant.builtin
+
+(wildcard) @parameter
+
+(annotation) @attribute
 
 ;; special keywords
 
@@ -196,7 +202,7 @@
 
 "return" @keyword.return
 
-(comment) @comment
+(comment) @comment @spell
 
 ;; `case` is a conditional keyword in case_block
 

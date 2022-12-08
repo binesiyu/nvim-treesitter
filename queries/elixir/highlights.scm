@@ -30,9 +30,11 @@
 
 ; Comments
 (comment) @comment
+(comment) @spell
 
 ; Strings
 (string) @string
+(string) @spell
 
 ; Modules
 (alias) @type
@@ -46,7 +48,7 @@
 ] @symbol
 
 ; Interpolation
-(interpolation "#{" @string.escape "}" @string.escape)
+(interpolation ["#{" "}"] @string.special)
 
 ; Escape sequences
 (escape_sequence) @string.escape
@@ -84,13 +86,13 @@
 (stab_clause operator: _ @operator)
 
 ; Local Function Calls
-(call target: (identifier) @function)
+(call target: (identifier) @function.call)
 
 ; Remote Function Calls
 (call target: (dot left: [
   (atom) @type
   (_)
-] right: (identifier) @function) (arguments))
+] right: (identifier) @function.call) (arguments))
 
 ; Definition Function Calls
 (call target: ((identifier) @keyword.function (#any-of? @keyword.function
